@@ -1,0 +1,19 @@
+Ignore the massive data files so GitHub doesn't crash!
+
+data/
+*.csv
+*.parquet
+*.pt
+*.pth
+
+Ignore Python cache and environment files
+
+pycache/
+*.pyc
+.env
+venv/
+env/
+
+Ignore Jupyter Notebook checkpoints
+
+.ipynb_checkpoints/
