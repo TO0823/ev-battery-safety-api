@@ -35,3 +35,67 @@ ev-charging-project/
 │   └── ev_battery_model.json   # Pre-trained XGBoost model
 ├── .gitignore                  # Git ignore rules
 └── README.md                   # Project documentation
+```
+
+## How to Run (Docker)
+
+You don't need to install Python, XGBoost, or any dependencies on your local machine. You only need Docker!
+
+**1. Clone the repository:**
+
+```bash
+git clone [https://github.com/YourUsername/ev-battery-safety-api.git](https://github.com/YourUsername/ev-battery-safety-api.git)
+cd ev-battery-safety-api/scripts
+```
+
+**2. Build the Docker Image:**
+
+```bash
+docker build -t ev-battery-ai .
+```
+
+**3. Run the Container:**
+
+```bash
+docker run -p 8000:8000 ev-battery-ai
+```
+
+## Testing the API
+
+Once the container is running, open your web browser and navigate to the interactive Swagger UI:
+
+http://localhost:8000/docs
+
+### Example Request (`POST /predict`)
+
+Feed the API real-time vehicle telemetry:
+
+```json
+{
+  "mileage": 150000,
+  "avg_cell_voltage": 3.2,
+  "max_cell_voltage": 3.9,
+  "min_cell_voltage": 2.1,
+  "avg_current": -350,
+  "avg_temp": 45,
+  "max_temp": 85,
+  "voltage_gap": 1.8
+}
+```
+
+### Example Response
+
+The AI will instantly return a health assessment and fault probability:
+
+```json
+{
+  "status": "success",
+  "prediction_label": 1,
+  "fault_probability_percent": 96.64,
+  "assessment": "FAULT DETECTED"
+}
+```
+
+## Model Training Details
+
+The core of this API is an `XGBClassifier` trained on historical EV data. Through exploratory data analysis (EDA) using heatmaps, scatter plots, and distributions, key danger zones (such as high max temperatures combined with negative current draw) were identified and learned by the model, resulting in an accuracy score of over 96%.
