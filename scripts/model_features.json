@@ -1,0 +1,17 @@
+{
+  "feature_names": [
+    "avg_cell_voltage",
+    "max_cell_voltage",
+    "min_cell_voltage",
+    "avg_current",
+    "avg_temp",
+    "max_temp",
+    "voltage_gap",
+    "rolling_max_temp_mean_10",
+    "rolling_voltage_gap_mean_10",
+    "rolling_voltage_gap_std_10",
+    "thermal_load",
+    "voltage_temp_ratio"
+  ],
+  "threshold": 0.15
+}
