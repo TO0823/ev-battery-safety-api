@@ -5,6 +5,8 @@ data/
 *.parquet
 *.pt
 *.pth
+*.pkl
+
 
 Ignore Python cache and environment files
 
